@@ -4,16 +4,17 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Write a new entry
-        // 5 different prompts for users to answer (they choose 1)
 
-        // Display journal
+        Journal journal1 = new Journal();
+        PromptGenerator prompts = new PromptGenerator();
+        string filename = "journalFile.txt";
 
-        // Save journal to file
+        prompts._prompts.Add("Who was the most interesting person I interacted with today?");
+        prompts._prompts.Add("What was the best part of my day?");
+        prompts._prompts.Add("How did I see the hand of the Lord in my life today?");
+        prompts._prompts.Add("What was the strongest emotion I felt today?");
+        prompts._prompts.Add("If I had one thing I could do over today, what would it be?");
 
-        // Load journal from file
-
-        // Provide menu with above options
         bool userMenu = true;
         while (userMenu == true)
         {
@@ -25,22 +26,13 @@ class Program
             Console.WriteLine("5. End session");
             string userOption = Console.ReadLine();
 
-            Journal journal1 = new Journal();
-            PromptGenerator prompts = new PromptGenerator();
-            prompts._prompts.Add("Who was the most interesting person I interacted with today?");
-            prompts._prompts.Add("What was the best part of my day?");
-            prompts._prompts.Add("How did I see the hand of the Lord in my life today?");
-            prompts._prompts.Add("What was the strongest emotion I felt today?");
-            prompts._prompts.Add("If I had one thing I could do over today, what would it be?");
-
-
             if (userOption == "1")
             {
                 Console.WriteLine("Write new entry chosen");
                 Entry entry = new Entry();
                 entry._promptText = prompts.GetRandomPrompt();
-                Console.WriteLine("Today's date: ");
-                entry._date = Console.ReadLine();
+                DateTime currentTime = DateTime.Now;
+                entry._date = currentTime.ToShortDateString();
                 Console.WriteLine($"{entry._promptText}");
                 entry._entryText = Console.ReadLine();
                 journal1.AddEntry(entry);
@@ -55,6 +47,7 @@ class Program
             else if (userOption == "3")
             {
                 Console.WriteLine("Save journal to file chosen");
+                journal1.SaveToFile(filename);
                 continue;
             }
             else if (userOption == "4")

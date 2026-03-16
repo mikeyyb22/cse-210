@@ -3,6 +3,8 @@
 // Save to file
 // Load from file
 
+using System.IO;
+
 class Journal
 {
     public List<Entry> _entries = new List<Entry>();
@@ -22,7 +24,13 @@ class Journal
 
     public void SaveToFile(string file)
     {
-
+        using (StreamWriter outputFile = new StreamWriter(file))
+        {
+            foreach (Entry entry in _entries)
+            {
+                outputFile.WriteLine($"{entry._date}/{entry._promptText}/{entry._entryText}");
+            }
+        }
     }
 
     public void LoadFromFile(string file)
