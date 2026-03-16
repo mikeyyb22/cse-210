@@ -43,11 +43,13 @@ class Program
                 entry._date = Console.ReadLine();
                 Console.WriteLine($"{entry._promptText}");
                 entry._entryText = Console.ReadLine();
+                journal1.AddEntry(entry);
                 continue;
             }
             else if (userOption == "2")
             {
                 Console.WriteLine("Display journal entries chosen");
+                journal1.DisplayAll();
                 continue;
             }
             else if (userOption == "3")
