@@ -9,7 +9,7 @@ class Journal
 
     public void AddEntry()
     {
-
+        
     }
 
     public void DisplayAll()
