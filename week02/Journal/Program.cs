@@ -7,7 +7,7 @@ class Program
 
         Journal journal1 = new Journal();
         PromptGenerator prompts = new PromptGenerator();
-        string filename = "journalFile.txt";
+        string filename = "journalFile.csv";
 
         prompts._prompts.Add("Who was the most interesting person I interacted with today?");
         prompts._prompts.Add("What was the best part of my day?");
@@ -52,7 +52,9 @@ class Program
             }
             else if (userOption == "4")
             {
-                Console.WriteLine("Load journal from file chosen");
+                Console.WriteLine("Load journal from file chosen. Here is the journal that was loaded:");
+                journal1.LoadFromFile(filename);
+                journal1.DisplayAll();
                 continue;
             }
             else
