@@ -20,26 +20,28 @@ public class Fraction
     }
     public int GetTop()
     {
-        return 1;
+        return _top;
     }
-    public void SetTop()
+    public void SetTop(int top)
     {
-
+        _top = top;
     }
     public int GetBottom()
     {
-        return 1;
+        return _bottom;
     }
-    public void SetBottom()
+    public void SetBottom(int bottom)
     {
-
+        _bottom = bottom;
     }
     public string GetFractionString()
     {
-        return "";
+        return $"{_top}/{_bottom}";
     }
     public double GetDecimalValue()
     {
-        return 1.0;
+        double top_dec = (double)_top;
+        double bottom_dec = (double)_bottom;
+        return top_dec / bottom_dec;
     }
 }
