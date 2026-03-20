@@ -2,7 +2,7 @@
 
 using System.Runtime.InteropServices;
 
-public class Reference()
+public class Reference
 {
     private string _book;
     private int _chapter;
@@ -14,6 +14,7 @@ public class Reference()
         _book = book;
         _chapter = chapter;
         _verse = verse;
+        _endVerse = 0;
     }
 
     public Reference(string book, int chapter, int startVerse, int endVerse)
@@ -27,6 +28,15 @@ public class Reference()
     // get display text of reference (getter/setter)
     public string GetDisplayText()
     {
-        return "";
+        // Console.WriteLine($"{_book}, {_chapter}, {_verse}, {_endVerse}");
+        if (_endVerse == 0)
+        {
+            return $"{_book} {_chapter}: {_verse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+        }
+
     }
 }

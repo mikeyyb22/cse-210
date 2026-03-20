@@ -1,6 +1,6 @@
 // Keeps track of a single word and whether it's shown or hidden
 
-public class Word()
+public class Word
 {
     private string _text;
     private bool _isHidden;
@@ -12,12 +12,12 @@ public class Word()
 
     public void Hide()
     {
-        
+
     }
 
     public void Show()
     {
-        
+
     }
 
     public bool IsHidden()
@@ -27,6 +27,6 @@ public class Word()
 
     public string GetDisplayText()
     {
-        return "";
+        return _text;
     }
 }
