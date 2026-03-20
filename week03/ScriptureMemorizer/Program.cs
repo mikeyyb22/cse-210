@@ -25,7 +25,6 @@ class Program
             else
             {
                 scripture.HideRandomWords(3);
-
                 Console.Clear();
 
                 continue;

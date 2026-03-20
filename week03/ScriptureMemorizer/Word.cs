@@ -12,7 +12,12 @@ public class Word
 
     public void Hide()
     {
-
+        char[] characters = _text.ToCharArray();
+        for (int i = 0; i < characters.Length; i++)
+        {
+            characters[i] = '_';
+        }
+        _text = new string(characters);
     }
 
     public void Show()

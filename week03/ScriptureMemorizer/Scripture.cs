@@ -28,10 +28,8 @@ public class Scripture
         {
             int randomWord = random.Next(scriptureLength);
             Word wordToElim = _words[randomWord];
-            // if (wordToElim.IsHidden() == true)
-            // {
-
-            // }
+            wordToElim.Hide();
+            _words[randomWord] = wordToElim;
         }
     }
 
