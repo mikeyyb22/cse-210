@@ -45,10 +45,28 @@ public class Scripture
         return displayText;
     }
 
-    // check if scripture is completely hidden (private)
-    private bool isCompletelyHidden()
+    // check if scripture is completely hidden 
+    public bool isCompletelyHidden()
     {
-
-        return false;
+        int scriptureLength = _words.Count;
+        int hiddenCounter = 0;
+        foreach (Word word in _words)
+        {
+            bool hidden = word.IsHidden();
+            if (hidden == true)
+            {
+                hiddenCounter++;
+            }
+        }
+        if (hiddenCounter == scriptureLength)
+        {
+            Console.WriteLine($"Hidden Counter:{hiddenCounter}, Scripture Word Length: {scriptureLength}");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine($"Hidden Counter:{hiddenCounter}, Scripture Word Length: {scriptureLength}");
+            return false;
+        }
     }
 }

@@ -7,14 +7,15 @@ class Program
         Reference reference = new Reference("Proverbs", 3, 5, 6);
         string scriptureText = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy ways acknowledge him, and he shall direct thy paths.";
         Scripture scripture = new Scripture(reference, scriptureText);
-        scriptureText = reference.GetDisplayText();
+        string referenceText = reference.GetDisplayText();
+
         bool memorizing = true;
 
-        
-        
+
         while (memorizing == true)
         {
             string tempScriptureText = scripture.GetDisplayText();
+            Console.WriteLine(referenceText);
             Console.WriteLine(tempScriptureText);
             Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
             string userInput = Console.ReadLine();
@@ -24,10 +25,20 @@ class Program
             }
             else
             {
-                scripture.HideRandomWords(3);
-                Console.Clear();
+                bool completelyHidden = scripture.isCompletelyHidden();
+                if (completelyHidden == true)
+                {
+                    Console.WriteLine($"You have memorized {referenceText}!");
+                    memorizing = false;
+                }
+                else
+                {
+                    scripture.HideRandomWords(3);
+                    Console.Clear();
 
-                continue;
+                    continue;
+                }
+
             }
         }
     }

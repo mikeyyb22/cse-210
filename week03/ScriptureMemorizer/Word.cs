@@ -27,7 +27,14 @@ public class Word
 
     public bool IsHidden()
     {
-        return false;
+        if (_text[0] == '_')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public string GetDisplayText()
