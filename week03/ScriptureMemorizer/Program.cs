@@ -1,3 +1,5 @@
+// Exceeding requirements - user chooses amount of words to hide at a time - words already hidden are not hidden again - 
+
 using System;
 
 class Program
