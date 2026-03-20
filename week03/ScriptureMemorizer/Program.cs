@@ -10,9 +10,12 @@ class Program
         scriptureText = reference.GetDisplayText();
         bool memorizing = true;
 
+        
+        
         while (memorizing == true)
         {
-            Console.WriteLine(scriptureText);
+            string tempScriptureText = scripture.GetDisplayText();
+            Console.WriteLine(tempScriptureText);
             Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
             string userInput = Console.ReadLine();
             if (userInput == "quit")

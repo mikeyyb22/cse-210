@@ -38,12 +38,19 @@ public class Scripture
     // get display text (public)
     public string GetDisplayText()
     {
-        return "";
+        string displayText = "";
+        foreach (Word word in _words)
+        {
+            string wordText = word.GetDisplayText();
+            displayText += $"{wordText} ";
+        }
+        return displayText;
     }
 
     // check if scripture is completely hidden (private)
     private bool isCompletelyHidden()
     {
+
         return false;
     }
 }
