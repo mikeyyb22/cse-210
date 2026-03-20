@@ -9,9 +9,10 @@ class Program
         Scripture scripture = new Scripture(reference, scriptureText);
         string referenceText = reference.GetDisplayText();
 
+        Console.Write("How many words would you like to hide at a time? ");
+        int wordsToHide = int.Parse(Console.ReadLine());
+
         bool memorizing = true;
-
-
         while (memorizing == true)
         {
             string tempScriptureText = scripture.GetDisplayText();
@@ -33,7 +34,7 @@ class Program
                 }
                 else
                 {
-                    scripture.HideRandomWords(3);
+                    scripture.HideRandomWords(wordsToHide);
                     Console.Clear();
 
                     continue;

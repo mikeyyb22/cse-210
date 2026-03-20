@@ -8,6 +8,7 @@ public class Word
     public Word(string text)
     {
         _text = text;
+        _isHidden = false;
     }
 
     public void Hide()
@@ -18,23 +19,12 @@ public class Word
             characters[i] = '_';
         }
         _text = new string(characters);
-    }
-
-    public void Show()
-    {
-
+        _isHidden = true;
     }
 
     public bool IsHidden()
     {
-        if (_text[0] == '_')
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return _isHidden;
     }
 
     public string GetDisplayText()

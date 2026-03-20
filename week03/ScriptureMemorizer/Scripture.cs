@@ -24,12 +24,26 @@ public class Scripture
     public void HideRandomWords(int numberToHide)
     {
         int scriptureLength = _words.Count;
-        for (int i = 1; i <= numberToHide; i++)
+        int alreadyHidden = 0;
+        bool fullyHidden = false;
+        while (alreadyHidden < numberToHide)
         {
-            int randomWord = random.Next(scriptureLength);
-            Word wordToElim = _words[randomWord];
-            wordToElim.Hide();
-            _words[randomWord] = wordToElim;
+            fullyHidden = isCompletelyHidden();
+            if (fullyHidden == true)
+            {
+                break;
+            }
+            else
+            {
+                int randomWord = random.Next(scriptureLength);
+                Word wordToElim = _words[randomWord];
+                if (wordToElim.IsHidden() == false)
+                {
+                    wordToElim.Hide();
+                    _words[randomWord] = wordToElim;
+                    alreadyHidden++;
+                }
+            }
         }
     }
 
@@ -60,12 +74,10 @@ public class Scripture
         }
         if (hiddenCounter == scriptureLength)
         {
-            Console.WriteLine($"Hidden Counter:{hiddenCounter}, Scripture Word Length: {scriptureLength}");
             return true;
         }
         else
         {
-            Console.WriteLine($"Hidden Counter:{hiddenCounter}, Scripture Word Length: {scriptureLength}");
             return false;
         }
     }
