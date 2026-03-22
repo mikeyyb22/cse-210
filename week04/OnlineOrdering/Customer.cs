@@ -13,7 +13,6 @@ public class Customer
 
     public bool LivesInUS()
     {
-        bool livesInUS = _address.LivesInUS();
-        return livesInUS;
+        return _address.LivesInUS();
     }
 }
