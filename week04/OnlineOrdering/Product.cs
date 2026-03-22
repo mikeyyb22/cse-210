@@ -13,7 +13,7 @@ public class Product
         _quantity = quantity;
     }
 
-    public float TotalCost()
+    public double TotalCost()
     {
         return _price * _quantity;
     }

@@ -9,28 +9,56 @@ public class Order
         _customer = customer;
     }
 
-    public float TotalOrderCost()
+    public double TotalOrderCost()
     {
         // Cost w/o Shipping Charge
+        double totalCost = 0;
         foreach (Product product in _products)
         {
-            float productCost = product.TotalCost();
+            double productCost = product.TotalCost();
+            totalCost += productCost;
         }
-        return 0;
+        return totalCost;
     }
 
     public string PackingLabel()
     {
-        return "";
+        string packingLabel = "";
+        foreach (Product product in _products)
+        {
+            string productName = product.GetName();
+            int productId = product.GetId();
+            packingLabel += $"{productName} - {productId}\n";
+        }
+        return packingLabel;
     }
 
     public string ShippingLabel()
     {
-        return "";
+        string shippingLabel = "";
+        string customerName = _customer.GetName();
+        string customerAddress = _customer.GetAddress();
+        shippingLabel += $"{customerName}\n{customerAddress}";
+
+        return shippingLabel;
     }
 
-    public float TotalPrice()
+    public double TotalPrice()
     {
-        return 0;
+        bool isInUS = _customer.LivesInUS();
+        double shippingCost = 0;
+        double totalPrice = 0;
+        if (isInUS == true)
+        {
+            shippingCost = 5.0;
+        }
+        else
+        {
+            shippingCost = 35.0;
+        }
+        totalPrice = TotalOrderCost();
+        totalPrice += shippingCost;
+
+        return totalPrice;
     }
 }
