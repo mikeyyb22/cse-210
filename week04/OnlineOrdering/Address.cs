@@ -15,11 +15,18 @@ public class Address
 
     public bool LivesInUS()
     {
-        return false;
+        if (_country == "USA" || _country == "United States of America")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public string GetFullAddress()
     {
-        return "";
+        return $"{_street}\n{_city}, {_state}\n{_country}";
     }
 }

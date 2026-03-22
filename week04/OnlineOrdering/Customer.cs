@@ -11,6 +11,11 @@ public class Customer
         _address = address;
     }
 
+    public string GetName()
+    {
+        return _name;
+    }
+
     public bool LivesInUS()
     {
         return _address.LivesInUS();
