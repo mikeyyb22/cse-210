@@ -28,7 +28,7 @@ class Program
             }
             else
             {
-                bool completelyHidden = scripture.isCompletelyHidden();
+                bool completelyHidden = scripture.IsCompletelyHidden();
                 if (completelyHidden == true)
                 {
                     Console.WriteLine($"You have memorized {referenceText}!");

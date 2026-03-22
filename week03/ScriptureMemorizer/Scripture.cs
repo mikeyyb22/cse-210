@@ -28,7 +28,7 @@ public class Scripture
         bool fullyHidden = false;
         while (alreadyHidden < numberToHide)
         {
-            fullyHidden = isCompletelyHidden();
+            fullyHidden = IsCompletelyHidden();
             if (fullyHidden == true)
             {
                 break;
@@ -60,7 +60,7 @@ public class Scripture
     }
 
     // check if scripture is completely hidden 
-    public bool isCompletelyHidden()
+    public bool IsCompletelyHidden()
     {
         int scriptureLength = _words.Count;
         int hiddenCounter = 0;
