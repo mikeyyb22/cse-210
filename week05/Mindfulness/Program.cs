@@ -1,3 +1,5 @@
+// Delete questions from reflectionQuestions after they've been used in ReflectionActivity.cs
+
 using System;
 
 class Program
@@ -52,12 +54,15 @@ class Program
             else if (userChoice == 3)
             {
                 // Enumeration Activity
-                // // Standard Prompt (description - This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
-                // // Select random prompt to show user
-                // // Program should give user countdown to think about prompt, then prompt to list items
-                // // User should list as many items as they can until time runs out
-                // // Activity displays number of items entered
-                // // Standard ending
+                string enumName = "Listing";
+                string enumDescrip = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+                int enumDuration = 0;
+                EnumerationActivity enumAct = new EnumerationActivity(listPrompts, enumName, enumDescrip, enumDuration);
+                // Standard Prompt
+                enumAct.DisplayStartingMessage();
+                enumAct.Run();
+                // Standard ending
+                enumAct.DisplayEndingMessage();
 
                 continue;
             }

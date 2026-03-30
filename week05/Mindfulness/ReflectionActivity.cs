@@ -44,12 +44,6 @@ public class ReflectionActivity : Activity
         return randomQuestion;
     }
 
-    // // Display prompt
-    // public void DisplayPrompt()
-    // {
-
-    // }
-
     // Display questions about prompt and get answers
     public void DisplayQuestions()
     {
