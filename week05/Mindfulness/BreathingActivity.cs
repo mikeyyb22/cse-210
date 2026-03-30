@@ -3,12 +3,22 @@ public class BreathingActivity : Activity
 
     public BreathingActivity(string name, string description, int duration) : base(name, description, duration)
     {
-        
+
     }
 
     // Run activity
     public void Run()
     {
-        int numItems = 0;
+        // Number of breaths taken (assuming each breath in/out takes 3 seconds, then rounding up)
+        int numItems = GetDuration() / 10;
+
+        // Show series of messages alternating between "Breathe in..." and "Breathe out..." pausing several seconds between, showing a countdown
+        for (int i = 0; i <= numItems; i++)
+        {
+            Console.Write("Breathe In...");
+            ShowCountdown(5);
+            Console.Write("Breathe Out...");
+            ShowCountdown(5);
+        }
     }
 }
