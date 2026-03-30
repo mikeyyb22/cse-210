@@ -40,5 +40,10 @@ class Program
         // // Activity displays number of items entered
         // // Standard ending
 
+        Activity act1 = new Activity();
+        // act1.ShowSpinner(10);
+        act1.ShowCountdown(5);
+
+
     }
 }
