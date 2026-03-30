@@ -5,6 +5,13 @@ class Program
     static void Main(string[] args)
     {
 
+        List<string> reflectionPrompts = ["Think of a time when you stood up for someone else.", "Think of a time when you did something really difficult.", "Think of a time when you helped someone in need.", "Think of a time when you did something truly selfless."];
+        List<string> reflectionQuestions = ["Why was this experience meaningful to you?", "Have you ever done anything like this before?", "How did you get started?", "How did you feel when it was complete?", "What made this time different than other times when you were not as successful?", "What is your favorite thing about this experience?", "What could you learn from this experience that applies to other situations?", "What did you learn about yourself through this experience?", "How can you keep this experience in mind in the future?"];
+        List<string> listPrompts = ["Who are people that you appreciate?", "What are personal strengths of yours?", "Who are people that you have helped this week?", "When have you felt the Holy Ghost this month?", "Who are some of your personal heroes?"];
+
+        // Activity testAct = new Activity();
+        // testAct.ShowSpinner(5);
+
         // Program:
         // - Menu system to choose activity
         bool userMenu = true;
@@ -17,7 +24,6 @@ class Program
             if (userChoice == 1)
             {
                 // Breathing Activity:
-                Console.WriteLine("Breathing Activity chosen.");
                 string breathingName = "Breathing";
                 string breathingDescrip = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
                 int breathingDuration = 0;
@@ -32,13 +38,15 @@ class Program
             else if (userChoice == 2)
             {
                 // Reflection Activity
-                // // Standard prompt (description - "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.")
-                // // Select random prompt to show to user
-                // // After, ask user to reflect on questions that relate to the experience.
-                // // Pause for several seconds before continuing to next question
-                // // Continue until reaching # of seconds user specified
+                string reflectionName = "Reflection";
+                string reflectionDescrip = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+                int reflectionDuration = 0;
+                ReflectionActivity reflectionAct = new ReflectionActivity(reflectionPrompts, reflectionQuestions, reflectionName, reflectionDescrip, reflectionDuration);
+                // Standard prompt
+                reflectionAct.DisplayStartingMessage();
+                reflectionAct.Run();
                 // // Standard ending
-
+                reflectionAct.DisplayEndingMessage();
                 continue;
             }
             else if (userChoice == 3)

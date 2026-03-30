@@ -41,22 +41,23 @@ public class Activity
     public void DisplayEndingMessage()
     {
         Console.WriteLine($"Congratulations! You have completed the {_name} program. You completed {_duration} seconds of this program. That\'s something to celebrate!");
-        ShowSpinner(2);
+        ShowSpinner(5);
     }
 
     // When application pauses, it should show an animation to user (spinner, countdown timer, ellipsis)
     public void ShowSpinner(int seconds)
     {
-        int spinnerCycles = seconds * 10;
+        int delay = 100;
+        int totalIterations = (seconds * 1000) / delay;
 
         char[] chars = { '|', '/', '-', '\\' };
 
-        for (int i = 0; i <= spinnerCycles; i++)
+        for (int i = 0; i < totalIterations; i++)
         {
             char currentSeparator = chars[i % chars.Length]
 ;
             Console.Write(currentSeparator);
-            Thread.Sleep(spinnerCycles);
+            Thread.Sleep(delay);
             Console.Write("\b");
         }
     }
