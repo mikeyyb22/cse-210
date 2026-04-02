@@ -20,7 +20,7 @@ public abstract class Goal
     public abstract void RecordEvent();
     public abstract bool IsComplete();
 
-    public string GetDetailsString()
+    public virtual string GetDetailsString()
     {
         string detailString = $"{_shortName}: {_description}.";
         return detailString;

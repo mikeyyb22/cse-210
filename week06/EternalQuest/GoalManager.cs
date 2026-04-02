@@ -31,6 +31,10 @@ public class GoalManager
                 // Allow user to record an event (accomplishing a goal)
                 RecordEvent();
             }
+            else if (userChoice == 3)
+            {
+                ListGoalDetails();
+            }
             else
             {
                 userMenu = false;
@@ -45,12 +49,30 @@ public class GoalManager
 
     public void ListGoalNames()
     {
-
+        int index = 1;
+        foreach (Goal goal in _goals)
+        {
+            Console.WriteLine($"{index}. {goal.GetDetailsString()}");
+            index++;
+        }
     }
 
     public void ListGoalDetails()
     {
-
+        string checkbox = "";
+        Console.WriteLine("Mission List: ");
+        foreach (Goal goal in _goals)
+        {
+            if (goal.IsComplete() == true)
+            {
+                checkbox = "[x]";
+            }
+            else
+            {
+                checkbox = "[ ]";
+            }
+            Console.WriteLine($"{checkbox} {goal.GetDetailsString()}");
+        }
     }
 
     public void CreateGoal()
@@ -78,6 +100,7 @@ public class GoalManager
             Console.Write("How many times does this task need to be done for the mission to be complete? ");
             int target = int.Parse(Console.ReadLine());
             ChecklistGoal checklist1 = new ChecklistGoal(goalName, goalDescription, (goalPoints * 10), target, (goalPoints * 100));
+            _goals.Add(checklist1);
         }
         else
         {
@@ -88,27 +111,30 @@ public class GoalManager
 
     public void RecordEvent()
     {
-        int index = 1;
-        Console.WriteLine("Please choose which mission to record: ");
-        foreach (Goal goal in _goals)
+        if (_goals.Count == 0)
         {
-            Console.WriteLine($"{index}. {goal.GetDetailsString()}");
-            index++;
-        }
-        Console.WriteLine($"{index}. Quit");
-        Console.WriteLine("Choose the mission you completed: ");
-        int completeMission = int.Parse(Console.ReadLine()) - 1;
-        if (_goals[completeMission].IsComplete() == true)
-        {
-            Console.WriteLine("Mission has already been completed. Returning...");
+            Console.WriteLine("There are no missions. Returning...");
             Thread.Sleep(1000);
         }
         else
         {
-            _goals[completeMission].RecordEvent();
-            _score += _goals[completeMission].GetPoints();
-            Console.WriteLine($"Your new score is {_score}.");
-            Console.WriteLine($"Mission recorded as complete: {_goals[completeMission].IsComplete()}");
+            Console.WriteLine("Please choose which mission to record: ");
+            ListGoalNames();
+            Console.WriteLine("Choose the mission you completed: ");
+            int completeMission = int.Parse(Console.ReadLine()) - 1;
+            if (_goals[completeMission].IsComplete() == true)
+            {
+                Console.WriteLine("Mission has already been completed. Returning...");
+                Thread.Sleep(1000);
+            }
+            else
+            {
+                _goals[completeMission].RecordEvent();
+                if (_goals[completeMission].IsComplete() == true)
+                {
+                    _score += _goals[completeMission].GetPoints();
+                }
+            }
         }
     }
 
