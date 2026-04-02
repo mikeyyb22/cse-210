@@ -28,9 +28,16 @@ public class ChecklistGoal : Goal
         }
     }
 
-    public int GetBonus()
+    public override int GetPoints()
     {
-        return _bonus;
+        if (_amountCompleted == _target)
+        {
+            return base.GetPoints() + _bonus;
+        }
+        else
+        {
+            return base.GetPoints();
+        }
     }
 
     public override string GetStringRepresentation()

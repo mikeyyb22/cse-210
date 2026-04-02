@@ -49,6 +49,10 @@ public class GoalManager
             {
                 DisplayPlayerInfo();
             }
+            else if (userChoice == 5)
+            {
+                SaveGoals();
+            }
             else
             {
                 userMenu = false;
@@ -183,13 +187,9 @@ public class GoalManager
             else
             {
                 _goals[completeMission].RecordEvent();
-                if (_goals[completeMission].IsComplete() == true)
-                {
-
-                    int oldScore = _score;
-                    _score += _goals[completeMission].GetPoints();
-                    XPHandler(oldScore, _score);
-                }
+                int oldScore = _score;
+                _score += _goals[completeMission].GetPoints();
+                XPHandler(oldScore, _score);
             }
         }
     }
@@ -209,7 +209,7 @@ public class GoalManager
 
     public void SaveGoals()
     {
-
+        
     }
 
     public void LoadGoals()
