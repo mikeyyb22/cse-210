@@ -82,16 +82,33 @@ public class GoalManager
         else
         {
             Console.WriteLine("Returning...");
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
         }
     }
 
     public void RecordEvent()
     {
+        int index = 1;
         Console.WriteLine("Please choose which mission to record: ");
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine($"{goal}{goal.GetDetailsString()}");
+            Console.WriteLine($"{index}. {goal.GetDetailsString()}");
+            index++;
+        }
+        Console.WriteLine($"{index}. Quit");
+        Console.WriteLine("Choose the mission you completed: ");
+        int completeMission = int.Parse(Console.ReadLine()) - 1;
+        if (_goals[completeMission].IsComplete() == true)
+        {
+            Console.WriteLine("Mission has already been completed. Returning...");
+            Thread.Sleep(1000);
+        }
+        else
+        {
+            _goals[completeMission].RecordEvent();
+            _score += _goals[completeMission].GetPoints();
+            Console.WriteLine($"Your new score is {_score}.");
+            Console.WriteLine($"Mission recorded as complete: {_goals[completeMission].IsComplete()}");
         }
     }
 
