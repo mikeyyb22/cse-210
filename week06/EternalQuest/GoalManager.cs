@@ -209,7 +209,14 @@ public class GoalManager
 
     public void SaveGoals()
     {
-        
+        string filename = "missions.txt";
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine($"{goal.GetStringRepresentation()}");
+            }
+        }
     }
 
     public void LoadGoals()

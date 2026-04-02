@@ -18,6 +18,7 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return "";
+        string stringRep = $"{GetDetailsString()},{IsComplete()}";
+        return stringRep;
     }
 }

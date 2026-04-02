@@ -22,7 +22,7 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        string detailString = $"{_shortName}: {_description}.";
+        string detailString = $"{_shortName},{_description}";
         return detailString;
     }
 
