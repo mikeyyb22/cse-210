@@ -1,13 +1,23 @@
+using System.IO.Pipelines;
+using System.Runtime.CompilerServices;
+
 public class GoalManager
 {
 
     private List<Goal> _goals;
     private int _score;
+    private string _rank;
+    private int _nextRankUp;
+    private Dictionary<int, Dictionary<string, object>> _levels;
+
+    private string filePath = "LevelUp.csv";
 
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
+        _levels = ReadFromCSV(filePath);
+        _rank = (string)_levels[0]["rankName"];
     }
 
     public void Start()
@@ -35,6 +45,10 @@ public class GoalManager
             {
                 ListGoalDetails();
             }
+            else if (userChoice == 4)
+            {
+                DisplayPlayerInfo();
+            }
             else
             {
                 userMenu = false;
@@ -42,9 +56,48 @@ public class GoalManager
         }
     }
 
+    public Dictionary<int, Dictionary<string, object>> ReadFromCSV(string path)
+    {
+        string[] lines = File.ReadAllLines(path);
+        string[] headers = lines[0].Split(',');
+
+        var levelup = new Dictionary<int, Dictionary<string, object>>();
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] values = lines[i].Split(',');
+            var rowDict = new Dictionary<string, object>();
+            for (int j = 0; j < headers.Length; j++)
+            {
+                string val = values[j];
+                // Check if val is number
+                if (int.TryParse(val, out int intVal))
+                {
+                    rowDict[headers[j]] = intVal;
+                }
+                else
+                {
+                    rowDict[headers[j]] = val;
+                }
+            }
+            levelup[i - 1] = rowDict;
+        }
+        return levelup;
+    }
+
     public void DisplayPlayerInfo()
     {
-
+        var currentAndNext = _levels.Values.Zip(_levels.Values.Skip(1));
+        foreach (var (current, next) in currentAndNext)
+        {
+            if (_score < (int)next["xpRequired"])
+            {
+                _nextRankUp = (int)next["xpRequired"];
+                break;
+            }
+        }
+        Console.WriteLine($"Current rank: {_rank}");
+        Console.WriteLine($"XP to next rank: {_score}/{_nextRankUp}");
     }
 
     public void ListGoalNames()
@@ -132,8 +185,24 @@ public class GoalManager
                 _goals[completeMission].RecordEvent();
                 if (_goals[completeMission].IsComplete() == true)
                 {
+
+                    int oldScore = _score;
                     _score += _goals[completeMission].GetPoints();
+                    XPHandler(oldScore, _score);
                 }
+            }
+        }
+    }
+
+    public void XPHandler(int oldXp, int xp)
+    {
+        var currentAndNext = _levels.Values.Zip(_levels.Values.Skip(1));
+        foreach (var (current, next) in currentAndNext)
+        {
+            if (xp >= (int)next["xpRequired"] && (int)next["xpRequired"] > oldXp)
+            {
+                _rank = (string)next["rankName"];
+                Console.WriteLine($"Congratulations! You leveled up. Your current rank is {(string)next["rankName"]}");
             }
         }
     }

@@ -1,0 +1,22 @@
+level,xpRequired,rankName
+0,0,Gardener
+1,150,Gardener Specialist
+2,400,Recruit
+3,700,Recruit Trainer
+4,1000,Swordsman 3rd Class
+5,1500,Swordsman 1st Class
+6,2000,Master Swordsman
+7,3000,Warrior 3rd Class
+8,4000,Warrior 1st Class
+9,5000,Warrior Commander
+10,6000,Warrior Elite
+11,7500,Elite 3rd Class
+12,9000,Elite 1st Class
+13,10500,Master
+14,12500,Master Elite
+15,15000,Grandmaster
+16,20000,Epic Grandmaster
+17,30000,Legend
+18,50000,Mythic
+19,100000,Universal
+20,500000,Supreme Universal
