@@ -17,7 +17,8 @@ public abstract class Goal
 
     public string GetDetailsString()
     {
-        return "";
+        string detailString = $"{_shortName}: {_description}.";
+        return detailString;
     }
 
     public abstract string GetStringRepresentation();

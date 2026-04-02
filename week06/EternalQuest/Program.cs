@@ -10,11 +10,12 @@ class Program
         // Provide for eternal goals that are never complete, but gain XP every time they're done
         // Provide for checklist goal that must be accomplished a certain amount of times before they're complete
         // Display score (XP/Level)
-        // Allow user to create new goals of any type
-        // Allow user to record an event (accomplishing a goal)
         // Show list of goals with current progress (checklist/times completed)
         // Allow goals and current XP/Level to saved and loaded
 
-        
+        GoalManager goalManager = new GoalManager();
+
+        goalManager.Start();
+
     }
 }
