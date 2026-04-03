@@ -1,2 +1,5 @@
-asdf,sdf,False
-asfe,fefe,False,0,5
+Score:1060,Swordsman 3rd Class
+SimpleGoal:Marathon,Run a marathon,True,1000
+EternalGoal:Scriptures,Read scriptures daily,False,30
+ChecklistGoal:Run mile,Run 1 mile every day for a week,False,7,600,1,60
+SimpleGoal:Thank you notes,Write thank you notes for wedding,False,500

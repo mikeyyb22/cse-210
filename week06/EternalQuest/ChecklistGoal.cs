@@ -42,7 +42,7 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        string stringRep = $"{base.GetDetailsString()},{IsComplete()},{_amountCompleted},{_target}";
+        string stringRep = $"{base.GetDetailsString()},{IsComplete()},{_target},{_bonus},{_amountCompleted}";
         return stringRep;
     }
 

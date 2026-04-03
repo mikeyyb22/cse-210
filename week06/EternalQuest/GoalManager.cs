@@ -53,6 +53,10 @@ public class GoalManager
             {
                 SaveGoals();
             }
+            else if (userChoice == 6)
+            {
+                LoadGoals();
+            }
             else
             {
                 userMenu = false;
@@ -212,15 +216,62 @@ public class GoalManager
         string filename = "missions.txt";
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
+            outputFile.WriteLine($"Score:{_score},{_rank}");
             foreach (Goal goal in _goals)
             {
-                outputFile.WriteLine($"{goal.GetStringRepresentation()}");
+                outputFile.WriteLine($"{goal.GetType()}:{goal.GetStringRepresentation()},{goal.GetPoints()}");
             }
         }
     }
 
     public void LoadGoals()
     {
+        string filename = "missions.txt";
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine("No saved missions found.");
+            Thread.Sleep(1000);
+            return;
+        }
 
+        string[] lines = System.IO.File.ReadAllLines(filename);
+
+        string[] firstLineParts = lines[0].Split(":");
+        string[] scoreAndRank = firstLineParts[1].Split(",");
+
+        _goals.Clear();
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] parts = lines[i].Split(':');
+            string type = parts[0];
+            string[] data = parts[1].Split(',');
+
+            if (type == "SimpleGoal")
+            {
+                SimpleGoal simpleGoal = new SimpleGoal(data[0], data[1], int.Parse(data[3]));
+                if (bool.Parse(data[2]))
+                {
+                    simpleGoal.RecordEvent();
+                }
+                _goals.Add(simpleGoal);
+            }
+            else if (type == "EternalGoal")
+            {
+                EternalGoal eternalGoal = new EternalGoal(data[0], data[1], int.Parse(data[3]));
+                _goals.Add(eternalGoal);
+            }
+            else if (type == "ChecklistGoal")
+            {
+                ChecklistGoal checklistGoal = new ChecklistGoal(data[0], data[1], int.Parse(data[6]), int.Parse(data[3]), int.Parse(data[4]));
+                int amountCompleted = int.Parse(data[5]);
+                for (int j = 0; j < amountCompleted; j++)
+                {
+                    checklistGoal.RecordEvent();
+                }
+                _goals.Add(checklistGoal);
+            }
+        }
+        Console.WriteLine("Missions loaded successfully.");
     }
 }
