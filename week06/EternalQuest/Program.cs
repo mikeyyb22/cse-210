@@ -1,4 +1,4 @@
-// XP System
+// Added XP level up system with 20 ranks, then save/load those ranks and XP. Added to menu option to see current rank and how much XP needed to reach next rank. 
 
 using System;
 
